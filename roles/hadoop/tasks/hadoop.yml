@@ -1,0 +1,29 @@
+---
+
+- name: get hadoop 3.0
+  get_url:
+    url: "{{ hadoop_release }}"
+    dest: /opt/
+
+- name: untar archive
+  unarchive:
+    src: /opt/{{ hadoop_version }}.tar.gz
+    dest: /opt/
+    remote_src: yes
+
+- name: clear file
+  shell:
+    echo "" > /opt/{{ hadoop_version }}/etc/hadoop/slaves
+
+- name: trying
+  shell:
+    echo "{{ item }}" >> /opt/{{ hadoop_version }}/etc/hadoop/slaves
+  with_items: "{{ play_hosts }}"
+  when: inventory_hostname == master
+
+- name: delete master hostname from slave file
+  lineinfile:
+    path: /opt/{{ hadoop_version }}/etc/hadoop/slaves
+    state: absent
+    regexp: "{{ master_node }}"
+

@@ -1,0 +1,9 @@
+- template:
+    src: hbase-regionserver.service.j2
+    dest: /etc/systemd/system/hbase-regionserver.service
+
+- name: enable hbase regionserver service
+  service:
+    name: hbase-regionserver
+    enabled: yes
+    state: started

@@ -1,0 +1,30 @@
+---
+- name: get spark  {{ spark_version }}
+  get_url:
+    url: "{{ spark_release }}"
+    dest: /opt/
+
+- name: untar archive spark
+  unarchive:
+    src: /opt/{{ spark_version }}.tgz
+    dest: /opt/
+    remote_src: yes
+
+- name: clear file
+  shell:
+    echo "" > /opt/{{ spark_version }}/conf/slaves
+
+- name: writing slaves hosts
+  shell:
+    echo "{{ item }}" >> /opt/{{ spark_version }}/conf/slaves
+  with_items: "{{ play_hosts }}"
+  when: inventory_hostname == master
+
+- name: delete master hostname from slaves file
+  lineinfile:
+    path: /opt/{{ spark_version }}/conf/slaves
+    state: absent
+    regexp: "{{ master_node }}"
+
+- name: set permissions
+  shell: chown hadoop -R /opt/spark*

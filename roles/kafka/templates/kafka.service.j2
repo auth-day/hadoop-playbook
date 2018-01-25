@@ -1,0 +1,15 @@
+[Unit]
+Description=Kafka node
+
+[Service]
+LimitNOFILE=65535
+Type=simple
+User=hadoop
+Group=hadoop
+ExecStart=/opt/{{ kafka_version }}/bin/kafka-server-start.sh /opt/{{ kafka_version }}/config/server.properties
+StandardOutput=journal
+StandardError=journal
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

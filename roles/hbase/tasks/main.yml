@@ -1,0 +1,11 @@
+---
+
+#- include: hbase.yml
+#
+#- include: configs.yml 
+
+- include: systemd_master.yml  
+  when: inventory_hostname == master
+
+- include: systemd_regionserver.yml 
+  when: inventory_hostname != master_node

@@ -1,0 +1,10 @@
+---
+
+- include: user.yml
+
+- include: copy_ssh.yml
+  when: inventory_hostname == master
+
+- include: key_pass.yml
+
+- include: env_var.yml

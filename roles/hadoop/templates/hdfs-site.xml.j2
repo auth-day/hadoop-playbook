@@ -1,0 +1,34 @@
+<configuration>
+
+    <property>
+        <name>dfs.namenode.name.dir</name>
+        <value>/opt/hadoop-data/nn</value>
+        </property>
+
+    <property>
+        <name>dfs.datanode.name.dir</name>
+        <value>/opt/hadoop-data/dn</value>
+    </property>
+
+
+    <property>
+        <name>dfs.replication</name>
+        <value>{{ rep_factor }}</value>
+    </property>
+
+    <property>
+      <name>dfs.datanode.http.address</name>
+      <value>0.0.0.0:50075</value>
+    </property>
+  
+    <property>
+      <name>dfs.datanode.address</name>
+      <value>0.0.0.0:50010</value>
+    </property>
+  
+    <property>
+      <name>dfs.datanode.ipc.address</name>
+      <value>0.0.0.0:50020</value>
+    </property>
+
+</configuration>

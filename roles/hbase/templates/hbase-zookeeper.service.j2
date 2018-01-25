@@ -1,0 +1,15 @@
+[Unit]
+Description=HBase Master Service
+
+[Service]
+LimitNOFILE=65535
+Type=simple
+User={{ user }}
+Group={{ user }}
+ExecStart=/opt/{{ hbase_version }}/bin/hbase zookeeper start
+StandardOutput=journal
+StandardError=journal
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,15 @@
+---
+
+#- include: hadoop.yml
+#- include: dirs.yml
+#
+#- include: configs.yml
+#
+#- include: namenode.yml
+#  when: inventory_hostname == master
+
+- include: systemd_namenode.yml
+  when: inventory_hostname == master
+
+- include: systemd_datanode.yml
+  when: inventory_hostname != master_node

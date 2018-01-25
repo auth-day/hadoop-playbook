@@ -1,0 +1,14 @@
+---
+
+- template:
+    src: hbase-site.xml.j2
+    dest: /opt/{{ hbase_version }}/conf/hbase-site.xml
+
+- name: add java-home
+  shell: echo "JAVA_HOME=/opt/java/java" >> /opt/{{ hbase_version }}/conf/hbase-env.sh
+
+- name: set permissions
+  shell: chown -R hadoop /opt/*
+
+- name: set hbase_manages_zk var
+  shell: echo "{{ external_zookeeper }}" >> /opt/"{{ hbase_version }}"/conf/hbase-env.sh

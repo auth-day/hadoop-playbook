@@ -1,0 +1,9 @@
+---
+
+- name: create hadoop data dir
+  shell: |
+    rm -rf /opt/hadoop-data
+    mkdir /opt/hadoop-data
+    mkdir /opt/hadoop-data/dn
+    mkdir /opt/hadoop-data/nn
+  ignore_errors: yes

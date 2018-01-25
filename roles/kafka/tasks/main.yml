@@ -1,0 +1,11 @@
+---
+
+- include: install.yml
+  when: inventory_hostname == kafka_server_name
+
+- include: config.yml
+  when: inventory_hostname == kafka_server_name
+
+- include: systemd_kafka.yml
+  when: inventory_hostname == kafka_server_name
+

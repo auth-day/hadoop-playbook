@@ -1,0 +1,5 @@
+---
+
+- name: format namenode
+  shell: sudo -u hadoop /opt/"{{ hadoop_version }}"/bin/hdfs namenode -format -force
+

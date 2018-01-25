@@ -1,0 +1,12 @@
+---
+
+- name: install git
+  package:
+    name: git
+    state: latest
+
+- name: copy repo
+  git:
+    repo: https://github.com/diboanches/java_jcp
+    dest: "{{java_destination}}"
+    #dest: /opt/java

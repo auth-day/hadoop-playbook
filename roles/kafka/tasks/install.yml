@@ -1,0 +1,16 @@
+---
+
+
+- name: download kafka
+  get_url:
+    url: "{{ kafka_release }}"
+    dest: /opt/
+
+- name: untar archive {{ kafka_version }} 
+  unarchive:
+    src: /opt/{{ kafka_version }}.tgz
+    dest: /opt/
+    remote_src: yes
+
+- name: permissions
+  shell: chown -R hadoop /opt/

@@ -1,0 +1,19 @@
+- template:
+    src: hdfs-datanode.service.j2
+    dest: /etc/systemd/system/hdfs-datanode.service
+
+- name: enable hdfs-datanode service
+  service:
+    name: hdfs-datanode
+    enabled: yes
+    state: started
+
+- template: 
+    src: yarn-nodemanager.service.j2
+    dest: /etc/systemd/system/yarn-nodemanager.service
+
+- name: enable yarn-nodemanager service 
+  service:
+    name: yarn-nodemanager
+    enabled: yes
+    state: started
