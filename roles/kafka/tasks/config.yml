@@ -1,0 +1,16 @@
+---
+
+- lineinfile: 
+    path: /opt/{{ kafka_version }}/config/server.properties
+    state: present
+    line: "zookeeper.connect={{ zookeeper }}:2181"
+
+- lineinfile:
+    path: /opt/{{ kafka_version }}/config/server.properties
+    state: present
+    line: "listeners=PLAINTEXT://{{ kafka_server_name }}:9092"
+
+- lineinfile:
+    path: /opt/{{ kafka_version }}/config/server.properties
+    state: present
+    line: "broker.id=1"

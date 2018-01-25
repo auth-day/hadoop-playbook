@@ -1,0 +1,15 @@
+---
+
+- hosts: all 
+
+  become: yes
+  ignore_errors: yes 
+
+  roles: 
+    - user
+    - java
+    - hadoop
+    - hbase
+    - spark
+    - kafka
+

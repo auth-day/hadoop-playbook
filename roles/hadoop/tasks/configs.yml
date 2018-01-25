@@ -1,0 +1,30 @@
+---
+
+- template:
+    src: hdfs-site.xml.j2
+    dest: /opt/{{ hadoop_version }}/etc/hadoop/hdfs-site.xml
+
+- template:
+    src: capacity-scheduler.xml.j2
+    dest: /opt/{{ hadoop_version }}/etc/hadoop/capacity-scheduler.xml
+
+- template:
+    src: core-site.xml.j2
+    dest: /opt/{{ hadoop_version }}/etc/hadoop/core-site.xml
+
+- template:
+    src: mapred-site.xml.j2
+    dest: /opt/{{ hadoop_version }}/etc/hadoop/mapred-site.xml
+
+- template:
+    src: yarn-site.xml.j2
+    dest: /opt/{{ hadoop_version }}/etc/hadoop/yarn-site.xml
+
+- name: add java-home
+  shell: echo "JAVA_HOME=/opt/java/java" >> /opt/{{ hadoop_version }}/etc/hadoop/hadoop-env.sh
+
+- name: set permissions
+  shell: chown -R hadoop /opt/hadoop*
+
+
+

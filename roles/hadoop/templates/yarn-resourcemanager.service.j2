@@ -1,0 +1,14 @@
+[Unit]
+Description=YARN Resourcemanager Service
+
+[Service]
+Type=simple
+User={{ user }}
+Group={{ user }}
+ExecStart=/opt/{{ hadoop_version }}/bin/yarn resourcemanager
+StandardOutput=journal
+StandardError=journal
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

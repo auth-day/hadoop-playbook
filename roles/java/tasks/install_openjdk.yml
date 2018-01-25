@@ -1,0 +1,11 @@
+- name: install openjdk centos
+  package: 
+    name: java-1.8.0-openjdk-devel
+    state: latest
+  when: ansible_distribution == "CentOS"
+
+- name: install openjdk debian
+  package: 
+    name: openjdk-8-jdk
+    state: latest
+  when: ansible_distribution == "Ubuntu"

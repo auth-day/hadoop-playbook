@@ -1,0 +1,7 @@
+---
+
+- name: Set authorized keys
+  authorized_key:
+    user: "{{ user }}"
+    state: present
+    key: " {{ lookup('file','/home/user/ansible/hadoop/roles/user/files/id_rsa.pub') }} " 

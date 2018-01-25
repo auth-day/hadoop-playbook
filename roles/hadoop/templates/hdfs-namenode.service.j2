@@ -1,0 +1,17 @@
+[Unit]
+Description=HDFS Namenode Service
+
+[Service]
+LimitNOFILE=65535
+Environment=LC_ALL=en_US.UTF-8
+Environment=LANG=en_US.UTF-8
+Type=simple
+User={{ user }}
+Group={{ user }}
+ExecStart=/opt/{{ hadoop_version }}/bin/hdfs namenode
+StandardOutput=journal
+StandardError=journal
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

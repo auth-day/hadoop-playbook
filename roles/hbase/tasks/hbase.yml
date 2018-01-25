@@ -1,0 +1,33 @@
+---
+
+- name: get hbase {{ hbase_version }}
+  get_url:
+    url: "{{ hbase_release }}"
+    dest: /opt/
+
+- name: untar archive hbase
+  unarchive:
+    src: /opt/{{ hbase_tar }}
+    dest: /opt/
+    remote_src: yes
+
+- name: clear file
+  shell:
+    echo "" > /opt/{{ hbase_version }}/conf/regionservers
+
+- name: writing slaves hosts
+  shell:
+    echo "{{ item }}" >> /opt/{{ hbase_version }}/conf/regionservers
+  with_items: "{{ play_hosts }}"
+  when: inventory_hostname == master
+
+- name: delete master hostname from regionservers file
+  lineinfile:
+    path: /opt/{{ hbase_version }}/conf/regionservers
+    state: absent
+    regexp: "{{ master_node }}"
+
+- name: create zookeeper dir
+  shell: |
+    rm -rf /opt/zookeeper 
+    mkdir /opt/zookeeper

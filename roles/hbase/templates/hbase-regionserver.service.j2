@@ -1,0 +1,16 @@
+[Unit]
+Description=HBase Regionserver Service
+After=hbase-master.service
+
+[Service]
+LimitNOFILE=65535
+Type=simple
+User={{ user }}
+Group={{ user }}
+ExecStart=/opt/{{ hbase_version }}/bin/hbase regionserver start
+StandardOutput=journal
+StandardError=journal
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

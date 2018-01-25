@@ -1,0 +1,43 @@
+user: hadoop
+password: hadoop
+
+
+# # master server
+master: 
+
+# One or more zookeeper servers followed by ","
+zookeeper: "{{ master }}"
+
+# Kafka server name
+kafka_server_name: "{{ master }}" 
+
+# number of nodes means number of replication factor
+rep_factor: 1
+
+# jtitrace_env 
+jtitrace_env: " "
+
+# if you want to use your master server as datanode and regionserver leave variable empty
+# if you do not want to use your master as dn or rs specify master server name 
+#master_node: "{{ master }}"
+master_node: " "
+
+# if you do not want to use zookeeper based on hbase change true to false and specify zookeeper variable 
+external_zookeeper: export HBASE_MANAGES_ZK=true
+
+# Tar archive is not the same as directory. So it is better to have a var to change tar name to avoid errors.
+hbase_tar: hbase-1.4.0-bin.tar.gz
+
+
+hadoop_version: hadoop-2.7.5
+hadoop_release: http://apache-mirror.rbc.ru/pub/apache/hadoop/common/hadoop-2.7.5/hadoop-2.7.5.tar.gz 
+hbase_version: hbase-1.4.0
+hbase_release: http://apache-mirror.rbc.ru/pub/apache/hbase/1.4.0/hbase-1.4.0-bin.tar.gz
+#hadoop_version: hadoop-3.0.0 
+#hadoop_release: http://apache-mirror.rbc.ru/pub/apache/hadoop/common/hadoop-3.0.0/hadoop-3.0.0.tar.gz
+#hbase_version: hbase-2.0.0-beta-1
+#hbase_release: http://apache-mirror.rbc.ru/pub/apache/hbase/hbase-2.0.0-beta-1/hbase-2.0.0-beta-1-bin.tar.gz 
+spark_version: spark-2.2.1-bin-hadoop2.7
+spark_release: http://apache-mirror.rbc.ru/pub/apache/spark/spark-2.2.1/spark-2.2.1-bin-hadoop2.7.tgz
+kafka_version: kafka_2.11-1.0.0
+kafka_release: http://apache-mirror.rbc.ru/pub/apache/kafka/1.0.0/kafka_2.11-1.0.0.tgz

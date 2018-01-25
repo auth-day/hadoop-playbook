@@ -1,0 +1,10 @@
+--- 
+
+- copy:
+    src: id_rsa
+    dest: "/home/{{ user }}/.ssh/"
+
+- copy:
+    src: id_rsa.pub
+    dest: "/home/{{ user }}/.ssh/"
+

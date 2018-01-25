@@ -1,0 +1,21 @@
+- template: 
+    src: hbase-zookeeper.service.j2
+    dest: /etc/systemd/system/hbase-zookeeper.service
+
+- name: enable hbase zookeeper service
+  service:
+    name: hbase-zookeeper
+    enabled: yes
+    state: started
+
+- template: 
+    src: hbase-master.service.j2
+    dest: /etc/systemd/system/hbase-master.service
+
+- name: enable hbase master service
+  service:
+    name: hbase-master
+    enabled: yes
+    state: started 
+
+

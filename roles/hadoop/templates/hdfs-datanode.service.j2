@@ -1,0 +1,18 @@
+[Unit]
+Description=HDFS Datanode Service
+After=hdfs-namenode.service
+
+[Service]
+LimitNOFILE=65535
+Environment=LC_ALL=en_US.UTF-8
+Environment=LANG=en_US.UTF-8
+Type=simple
+User={{ user }}
+Group={{ user }}
+ExecStart=/opt/{{ hadoop_version }}/bin/hdfs datanode
+StandardOutput=journal
+StandardError=journal
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
